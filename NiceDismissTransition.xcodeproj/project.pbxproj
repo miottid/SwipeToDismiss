@@ -13,9 +13,11 @@
 		58D4D1DC1E1BF19C00A714B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1DA1E1BF19C00A714B9 /* Main.storyboard */; };
 		58D4D1DE1E1BF19C00A714B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1DD1E1BF19C00A714B9 /* Assets.xcassets */; };
 		58D4D1E11E1BF19C00A714B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1DF1E1BF19C00A714B9 /* LaunchScreen.storyboard */; };
+		C30A5CFA2235CCB3407B90AE /* libPods-NiceDismissTransition.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A247BBB4AAD667408B17F9B8 /* libPods-NiceDismissTransition.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A5E58115AED5B2A1144CCD3 /* Pods-NiceDismissTransition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceDismissTransition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NiceDismissTransition/Pods-NiceDismissTransition.debug.xcconfig"; sourceTree = "<group>"; };
 		58D4D1CE1E1BF19C00A714B9 /* NiceDismissTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiceDismissTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D4D1D21E1BF19C00A714B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58D4D1D41E1BF19C00A714B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +28,8 @@
 		58D4D1DD1E1BF19C00A714B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58D4D1E01E1BF19C00A714B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		58D4D1E21E1BF19C00A714B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90FF07A172DCD435C08596BF /* Pods-NiceDismissTransition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceDismissTransition.release.xcconfig"; path = "Pods/Target Support Files/Pods-NiceDismissTransition/Pods-NiceDismissTransition.release.xcconfig"; sourceTree = "<group>"; };
+		A247BBB4AAD667408B17F9B8 /* libPods-NiceDismissTransition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NiceDismissTransition.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30A5CFA2235CCB3407B90AE /* libPods-NiceDismissTransition.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				58D4D1D01E1BF19C00A714B9 /* NiceDismissTransition */,
 				58D4D1CF1E1BF19C00A714B9 /* Products */,
+				F2D81A43FBAF83C9F8E814F7 /* Pods */,
+				B267FE2F1EC3BC79CE8EAB80 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +86,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B267FE2F1EC3BC79CE8EAB80 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A247BBB4AAD667408B17F9B8 /* libPods-NiceDismissTransition.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2D81A43FBAF83C9F8E814F7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3A5E58115AED5B2A1144CCD3 /* Pods-NiceDismissTransition.debug.xcconfig */,
+				90FF07A172DCD435C08596BF /* Pods-NiceDismissTransition.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +110,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58D4D1E51E1BF19C00A714B9 /* Build configuration list for PBXNativeTarget "NiceDismissTransition" */;
 			buildPhases = (
+				46778530FB102517036BB69D /* [CP] Check Pods Manifest.lock */,
 				58D4D1CA1E1BF19C00A714B9 /* Sources */,
 				58D4D1CB1E1BF19C00A714B9 /* Frameworks */,
 				58D4D1CC1E1BF19C00A714B9 /* Resources */,
+				20513B2F9FC28188B4125827 /* [CP] Embed Pods Frameworks */,
+				E3B61509ECE6BA9595EB234E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,6 +172,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20513B2F9FC28188B4125827 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NiceDismissTransition/Pods-NiceDismissTransition-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46778530FB102517036BB69D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E3B61509ECE6BA9595EB234E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NiceDismissTransition/Pods-NiceDismissTransition-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58D4D1CA1E1BF19C00A714B9 /* Sources */ = {
@@ -271,6 +346,7 @@
 		};
 		58D4D1E61E1BF19C00A714B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A5E58115AED5B2A1144CCD3 /* Pods-NiceDismissTransition.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 659B2N7HE9;
@@ -283,6 +359,7 @@
 		};
 		58D4D1E71E1BF19C00A714B9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90FF07A172DCD435C08596BF /* Pods-NiceDismissTransition.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 659B2N7HE9;
