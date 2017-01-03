@@ -13,6 +13,8 @@
 		58D4D1DC1E1BF19C00A714B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1DA1E1BF19C00A714B9 /* Main.storyboard */; };
 		58D4D1DE1E1BF19C00A714B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1DD1E1BF19C00A714B9 /* Assets.xcassets */; };
 		58D4D1E11E1BF19C00A714B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1DF1E1BF19C00A714B9 /* LaunchScreen.storyboard */; };
+		58D4D1EA1E1BF41B00A714B9 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1E91E1BF41B00A714B9 /* DetailViewController.m */; };
+		58D4D1ED1E1BF67900A714B9 /* lorem_ipsum.txt in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1EC1E1BF67900A714B9 /* lorem_ipsum.txt */; };
 		C30A5CFA2235CCB3407B90AE /* libPods-NiceDismissTransition.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A247BBB4AAD667408B17F9B8 /* libPods-NiceDismissTransition.a */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,9 @@
 		58D4D1DD1E1BF19C00A714B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58D4D1E01E1BF19C00A714B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		58D4D1E21E1BF19C00A714B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58D4D1E81E1BF41B00A714B9 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		58D4D1E91E1BF41B00A714B9 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		58D4D1EC1E1BF67900A714B9 /* lorem_ipsum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lorem_ipsum.txt; sourceTree = "<group>"; };
 		90FF07A172DCD435C08596BF /* Pods-NiceDismissTransition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceDismissTransition.release.xcconfig"; path = "Pods/Target Support Files/Pods-NiceDismissTransition/Pods-NiceDismissTransition.release.xcconfig"; sourceTree = "<group>"; };
 		A247BBB4AAD667408B17F9B8 /* libPods-NiceDismissTransition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NiceDismissTransition.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -67,13 +72,13 @@
 			children = (
 				58D4D1D41E1BF19C00A714B9 /* AppDelegate.h */,
 				58D4D1D51E1BF19C00A714B9 /* AppDelegate.m */,
-				58D4D1D71E1BF19C00A714B9 /* ViewController.h */,
-				58D4D1D81E1BF19C00A714B9 /* ViewController.m */,
+				58D4D1EB1E1BF42700A714B9 /* Controllers */,
 				58D4D1DA1E1BF19C00A714B9 /* Main.storyboard */,
 				58D4D1DD1E1BF19C00A714B9 /* Assets.xcassets */,
 				58D4D1DF1E1BF19C00A714B9 /* LaunchScreen.storyboard */,
 				58D4D1E21E1BF19C00A714B9 /* Info.plist */,
 				58D4D1D11E1BF19C00A714B9 /* Supporting Files */,
+				58D4D1EC1E1BF67900A714B9 /* lorem_ipsum.txt */,
 			);
 			path = NiceDismissTransition;
 			sourceTree = "<group>";
@@ -84,6 +89,17 @@
 				58D4D1D21E1BF19C00A714B9 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58D4D1EB1E1BF42700A714B9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				58D4D1D71E1BF19C00A714B9 /* ViewController.h */,
+				58D4D1D81E1BF19C00A714B9 /* ViewController.m */,
+				58D4D1E81E1BF41B00A714B9 /* DetailViewController.h */,
+				58D4D1E91E1BF41B00A714B9 /* DetailViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		B267FE2F1EC3BC79CE8EAB80 /* Frameworks */ = {
@@ -166,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58D4D1E11E1BF19C00A714B9 /* LaunchScreen.storyboard in Resources */,
+				58D4D1ED1E1BF67900A714B9 /* lorem_ipsum.txt in Resources */,
 				58D4D1DE1E1BF19C00A714B9 /* Assets.xcassets in Resources */,
 				58D4D1DC1E1BF19C00A714B9 /* Main.storyboard in Resources */,
 			);
@@ -229,6 +246,7 @@
 				58D4D1D91E1BF19C00A714B9 /* ViewController.m in Sources */,
 				58D4D1D61E1BF19C00A714B9 /* AppDelegate.m in Sources */,
 				58D4D1D31E1BF19C00A714B9 /* main.m in Sources */,
+				58D4D1EA1E1BF41B00A714B9 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +407,7 @@
 				58D4D1E71E1BF19C00A714B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
