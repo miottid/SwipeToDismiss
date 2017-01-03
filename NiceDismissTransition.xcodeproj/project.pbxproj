@@ -15,6 +15,7 @@
 		58D4D1E11E1BF19C00A714B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1DF1E1BF19C00A714B9 /* LaunchScreen.storyboard */; };
 		58D4D1EA1E1BF41B00A714B9 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1E91E1BF41B00A714B9 /* DetailViewController.m */; };
 		58D4D1ED1E1BF67900A714B9 /* lorem_ipsum.txt in Resources */ = {isa = PBXBuildFile; fileRef = 58D4D1EC1E1BF67900A714B9 /* lorem_ipsum.txt */; };
+		58D4D1F11E1BF7EB00A714B9 /* DismissAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1F01E1BF7EB00A714B9 /* DismissAnimator.m */; };
 		C30A5CFA2235CCB3407B90AE /* libPods-NiceDismissTransition.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A247BBB4AAD667408B17F9B8 /* libPods-NiceDismissTransition.a */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,8 @@
 		58D4D1E81E1BF41B00A714B9 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		58D4D1E91E1BF41B00A714B9 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		58D4D1EC1E1BF67900A714B9 /* lorem_ipsum.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lorem_ipsum.txt; sourceTree = "<group>"; };
+		58D4D1EF1E1BF7EB00A714B9 /* DismissAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissAnimator.h; sourceTree = "<group>"; };
+		58D4D1F01E1BF7EB00A714B9 /* DismissAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissAnimator.m; sourceTree = "<group>"; };
 		90FF07A172DCD435C08596BF /* Pods-NiceDismissTransition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceDismissTransition.release.xcconfig"; path = "Pods/Target Support Files/Pods-NiceDismissTransition/Pods-NiceDismissTransition.release.xcconfig"; sourceTree = "<group>"; };
 		A247BBB4AAD667408B17F9B8 /* libPods-NiceDismissTransition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NiceDismissTransition.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,8 +101,18 @@
 				58D4D1D81E1BF19C00A714B9 /* ViewController.m */,
 				58D4D1E81E1BF41B00A714B9 /* DetailViewController.h */,
 				58D4D1E91E1BF41B00A714B9 /* DetailViewController.m */,
+				58D4D1EE1E1BF7D200A714B9 /* DismissAnimator */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		58D4D1EE1E1BF7D200A714B9 /* DismissAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				58D4D1EF1E1BF7EB00A714B9 /* DismissAnimator.h */,
+				58D4D1F01E1BF7EB00A714B9 /* DismissAnimator.m */,
+			);
+			name = DismissAnimator;
 			sourceTree = "<group>";
 		};
 		B267FE2F1EC3BC79CE8EAB80 /* Frameworks */ = {
@@ -247,6 +260,7 @@
 				58D4D1D61E1BF19C00A714B9 /* AppDelegate.m in Sources */,
 				58D4D1D31E1BF19C00A714B9 /* main.m in Sources */,
 				58D4D1EA1E1BF41B00A714B9 /* DetailViewController.m in Sources */,
+				58D4D1F11E1BF7EB00A714B9 /* DismissAnimator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

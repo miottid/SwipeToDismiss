@@ -8,9 +8,12 @@
 
 #import "DetailViewController.h"
 #import <Masonry/Masonry.h>
+#import "DismissAnimator.h"
 
-@interface DetailViewController ()
+@interface DetailViewController ()<UIViewControllerTransitioningDelegate>
 
+@property (nonatomic, strong) UIView *navBarView;
+@property (nonatomic, strong) UIButton *dimissBtn;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *containerScrollView;
 @property (nonatomic, strong) UILabel *textContentLbl;
@@ -19,23 +22,40 @@
 
 @implementation DetailViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.transitioningDelegate = self;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIBarButtonItem *dismissBbi = [[UIBarButtonItem alloc] initWithTitle:@"Dismiss" style:UIBarButtonItemStylePlain target:self action:@selector(tappedDismissBtn:)];
-    [self.navigationItem setLeftBarButtonItem:dismissBbi];
-
     self.view.backgroundColor = [UIColor whiteColor];
 
-    self.scrollView = [[UIScrollView alloc] init];
+    UIColor *blueColor = [UIColor colorWithRed:0.f/255.f green:106.f/255.f blue:180.f/255.f alpha:1.f];
+
+    self.navBarView = [UIView new];
+    self.navBarView.backgroundColor = blueColor;
+    [self.view addSubview:self.navBarView];
+
+    self.scrollView = [UIScrollView new];
     [self.view addSubview:self.scrollView];
 
-    self.containerScrollView = [[UIView alloc] init];
+    self.containerScrollView = [UIView new];
     [self.scrollView addSubview:self.containerScrollView];
 
-    self.textContentLbl = [[UILabel alloc] init];
+    self.textContentLbl = [UILabel new];
     self.textContentLbl.numberOfLines = 0;
     [self.containerScrollView addSubview:self.textContentLbl];
+
+    self.dimissBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [self.dimissBtn setTitle:@"Dismiss" forState:UIControlStateNormal];
+    [self.dimissBtn setTintColor:[UIColor whiteColor]];
+    [self.dimissBtn addTarget:self action:@selector(tappedDismissBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navBarView addSubview:self.dimissBtn];
 
     [self configureLayoutConstraints];
     [self prepareContent];
@@ -56,8 +76,23 @@
 #pragma mark - Configure Layout
 
 - (void)configureLayoutConstraints {
+    [self.navBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.height.equalTo(@64.f);
+    }];
+    [self.dimissBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.navBarView).offset(15.f);
+        make.centerY.equalTo(self.navBarView).offset(7.f);
+        make.height.greaterThanOrEqualTo(@44.f);
+        make.width.greaterThanOrEqualTo(@44.f);
+    }];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.top.equalTo(self.navBarView.mas_bottom);
+        make.bottom.equalTo(self.view);
     }];
     [self.containerScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.scrollView);
@@ -71,7 +106,17 @@
 #pragma mark - Dismiss button
 
 - (void)tappedDismissBtn:(id)sender {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [DismissAnimator new];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

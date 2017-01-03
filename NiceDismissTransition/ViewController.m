@@ -35,8 +35,7 @@
 
 - (void)tappedOpenModal:(id)sender {
     UIViewController *detailVC = [[DetailViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:detailVC];
-    [self presentViewController:nav animated:YES completion:nil];
+    [self presentViewController:detailVC animated:YES completion:nil];
 }
 
 @end
