@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UILabel *textContentLbl;
 
 @property (nonatomic, strong) DismissInteractor *dimissInteractor;
+@property (nonatomic, assign) CGFloat dismissThreshold;
 
 @end
 
@@ -29,6 +30,7 @@
     self = [super init];
     if (self) {
         self.dimissInteractor = [DismissInteractor new];
+        self.dismissThreshold = 0.f;
         self.transitioningDelegate = self;
     }
     return self;
@@ -127,7 +129,15 @@
 #pragma mark - UIScrollView Delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"contentOffset: %f", scrollView.contentOffset.y);
+    CGFloat offset = scrollView.contentOffset.y;
+
+    if (offset < 0) {
+        self.dismissThreshold += offset;
+        NSLog(@"contentOffset: %.2f, dismissThreshold: %.2f", offset, self.dismissThreshold);
+        self.dimissInteractor.hasStarted = YES;
+        scrollView.contentOffset = CGPointMake(0, 0);
+//        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 
 //    let percentThreshold:CGFloat = 0.3
 //
