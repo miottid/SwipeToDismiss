@@ -9,14 +9,17 @@
 #import "DetailViewController.h"
 #import <Masonry/Masonry.h>
 #import "DismissAnimator.h"
+#import "DismissInteractor.h"
 
-@interface DetailViewController ()<UIViewControllerTransitioningDelegate>
+@interface DetailViewController ()<UIViewControllerTransitioningDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIView *navBarView;
 @property (nonatomic, strong) UIButton *dimissBtn;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *containerScrollView;
 @property (nonatomic, strong) UILabel *textContentLbl;
+
+@property (nonatomic, strong) DismissInteractor *dimissInteractor;
 
 @end
 
@@ -25,6 +28,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.dimissInteractor = [DismissInteractor new];
         self.transitioningDelegate = self;
     }
     return self;
@@ -42,6 +46,7 @@
     [self.view addSubview:self.navBarView];
 
     self.scrollView = [UIScrollView new];
+    self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
 
     self.containerScrollView = [UIView new];
@@ -117,6 +122,21 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - UIScrollView Delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"contentOffset: %f", scrollView.contentOffset.y);
+
+//    let percentThreshold:CGFloat = 0.3
+//
+//    // convert y-position to downward pull progress (percentage)
+//    let translation = sender.translationInView(view)
+//    let verticalMovement = translation.y / view.bounds.height
+//    let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+//    let downwardMovementPercent = fminf(downwardMovement, 1.0)
+//    let progress = CGFloat(downwardMovementPercent)
 }
 
 @end
