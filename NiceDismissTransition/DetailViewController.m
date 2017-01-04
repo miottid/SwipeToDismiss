@@ -134,6 +134,7 @@
     CGFloat scrollViewOffsetY = self.scrollView.contentOffset.y;
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
+        // Keep track of the scroll view current offset in order translate correctly the controller
         self.originalDismissStartingOffsetY = scrollViewOffsetY;
     }
     
