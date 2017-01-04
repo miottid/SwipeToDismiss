@@ -127,7 +127,7 @@
     return self.dismissInteractor.hasStarted ? self.dismissInteractor : nil;
 }
 
-#pragma mark - UIScrollView Delegate
+#pragma mark - UIPanGestureRecognizer target/action
 
 // Handle interactive dismissing of controller from scrollView
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer {

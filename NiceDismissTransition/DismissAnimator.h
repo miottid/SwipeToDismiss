@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+/// An animator that dismiss a controller by scaling
 @interface DismissAnimator : NSObject<UIViewControllerAnimatedTransitioning>
 
 @end

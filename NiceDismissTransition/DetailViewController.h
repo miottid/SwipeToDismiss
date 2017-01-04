@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+// A basic controller that shows a lorem ipsum text
 @interface DetailViewController : UIViewController
 
 @end
