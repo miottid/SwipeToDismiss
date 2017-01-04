@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5839E8A81E1CF2BF00ED878A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5839E8A71E1CF2BF00ED878A /* README.md */; };
 		58D4D1D31E1BF19C00A714B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1D21E1BF19C00A714B9 /* main.m */; };
 		58D4D1D61E1BF19C00A714B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1D51E1BF19C00A714B9 /* AppDelegate.m */; };
 		58D4D1D91E1BF19C00A714B9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1D81E1BF19C00A714B9 /* ViewController.m */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		3A5E58115AED5B2A1144CCD3 /* Pods-NiceDismissTransition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NiceDismissTransition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NiceDismissTransition/Pods-NiceDismissTransition.debug.xcconfig"; sourceTree = "<group>"; };
+		5839E8A71E1CF2BF00ED878A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		58D4D1CE1E1BF19C00A714B9 /* NiceDismissTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NiceDismissTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D4D1D21E1BF19C00A714B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58D4D1D41E1BF19C00A714B9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		58D4D1C51E1BF19C00A714B9 = {
 			isa = PBXGroup;
 			children = (
+				5839E8A71E1CF2BF00ED878A /* README.md */,
 				58D4D1D01E1BF19C00A714B9 /* NiceDismissTransition */,
 				58D4D1CF1E1BF19C00A714B9 /* Products */,
 				F2D81A43FBAF83C9F8E814F7 /* Pods */,
@@ -264,6 +267,7 @@
 				58D4D1D91E1BF19C00A714B9 /* ViewController.m in Sources */,
 				58D4D1D61E1BF19C00A714B9 /* AppDelegate.m in Sources */,
 				58D4D1D31E1BF19C00A714B9 /* main.m in Sources */,
+				5839E8A81E1CF2BF00ED878A /* README.md in Sources */,
 				58D4D1EA1E1BF41B00A714B9 /* DetailViewController.m in Sources */,
 				58D4D1F11E1BF7EB00A714B9 /* DismissAnimator.m in Sources */,
 				58E24E7C1E1C057E00335C86 /* DismissInteractor.m in Sources */,

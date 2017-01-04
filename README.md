@@ -1,6 +1,6 @@
 # NiceDismissTransition
 
-An Objective-C project that dismiss an UIViewController with user interactions
+An Objective-C project that dismiss an UIViewController with user interactions.
 
 # Setup
 
