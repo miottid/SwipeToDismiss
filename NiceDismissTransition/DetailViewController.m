@@ -11,7 +11,7 @@
 #import "DismissAnimator.h"
 #import "DismissInteractor.h"
 
-@interface DetailViewController ()<UIViewControllerTransitioningDelegate>
+@interface DetailViewController ()<UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIView *navBarView;
 @property (nonatomic, strong) UIButton *dimissBtn;
@@ -49,7 +49,9 @@
     [self.view addSubview:self.navBarView];
 
     self.scrollView = [UIScrollView new];
-    [self.scrollView.panGestureRecognizer addTarget:self action:@selector(handlePan:)];
+    UIPanGestureRecognizer *scrollPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFromScrollView:)];
+    scrollPan.delegate = self;
+    [self.scrollView addGestureRecognizer:scrollPan];
     [self.view addSubview:self.scrollView];
 
     self.containerScrollView = [UIView new];
@@ -130,7 +132,7 @@
 #pragma mark - UIPanGestureRecognizer target/action
 
 // Handle interactive dismissing of controller from scrollView
-- (void)handlePan:(UIPanGestureRecognizer *)recognizer {
+- (void)handlePanFromScrollView:(UIPanGestureRecognizer *)recognizer {
     CGFloat scrollViewOffsetY = self.scrollView.contentOffset.y;
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
@@ -149,9 +151,9 @@
     }
     
     [self handlePan:diff forState:recognizer.state];
-    
-    self.scrollView.showsVerticalScrollIndicator = !self.dismissInteractor.hasStarted;
-    self.scrollView.contentOffset = CGPointMake(0, 0);
+
+    // Keep y content offset to 0
+    self.scrollView.contentOffset = CGPointZero;
 }
 
 // Handle interactive dismissing of controller from navbar header
@@ -170,7 +172,7 @@
     CGFloat downwardMovement = fmaxf(verticalMovement, 0.f);
     // caps the percentage to a maximum of 100%
     CGFloat progress = fminf(downwardMovement, 1.f);
-    
+
     switch (state) {
         case UIGestureRecognizerStateBegan:
             self.dismissInteractor.hasStarted = YES;
@@ -184,7 +186,7 @@
             }
             self.dismissInteractor.shouldFinish = progress > percentThreshold;
             [self.dismissInteractor updateInteractiveTransition:progress];
-            
+
             if (progress <= 0.f) {
                 self.dismissInteractor.hasStarted = NO;
                 [self.dismissInteractor cancelInteractiveTransition];
@@ -208,6 +210,12 @@
         default:
             break;
     }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

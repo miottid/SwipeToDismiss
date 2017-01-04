@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5839E8A81E1CF2BF00ED878A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5839E8A71E1CF2BF00ED878A /* README.md */; };
 		58D4D1D31E1BF19C00A714B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1D21E1BF19C00A714B9 /* main.m */; };
 		58D4D1D61E1BF19C00A714B9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1D51E1BF19C00A714B9 /* AppDelegate.m */; };
 		58D4D1D91E1BF19C00A714B9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D4D1D81E1BF19C00A714B9 /* ViewController.m */; };
@@ -267,7 +266,6 @@
 				58D4D1D91E1BF19C00A714B9 /* ViewController.m in Sources */,
 				58D4D1D61E1BF19C00A714B9 /* AppDelegate.m in Sources */,
 				58D4D1D31E1BF19C00A714B9 /* main.m in Sources */,
-				5839E8A81E1CF2BF00ED878A /* README.md in Sources */,
 				58D4D1EA1E1BF41B00A714B9 /* DetailViewController.m in Sources */,
 				58D4D1F11E1BF7EB00A714B9 /* DismissAnimator.m in Sources */,
 				58E24E7C1E1C057E00335C86 /* DismissInteractor.m in Sources */,
