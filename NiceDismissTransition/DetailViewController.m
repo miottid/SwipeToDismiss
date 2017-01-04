@@ -11,7 +11,7 @@
 #import "DismissAnimator.h"
 #import "DismissInteractor.h"
 
-@interface DetailViewController ()<UIViewControllerTransitioningDelegate, UIScrollViewDelegate>
+@interface DetailViewController ()<UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) UIView *navBarView;
 @property (nonatomic, strong) UIButton *dimissBtn;
@@ -19,8 +19,8 @@
 @property (nonatomic, strong) UIView *containerScrollView;
 @property (nonatomic, strong) UILabel *textContentLbl;
 
-@property (nonatomic, strong) DismissInteractor *dimissInteractor;
-@property (nonatomic, assign) CGFloat dismissThreshold;
+@property (nonatomic, strong) DismissInteractor *dismissInteractor;
+@property (nonatomic, assign) CGFloat originalDismissStartingOffsetY;
 
 @end
 
@@ -29,8 +29,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.dimissInteractor = [DismissInteractor new];
-        self.dismissThreshold = 0.f;
+        self.dismissInteractor = [DismissInteractor new];
         self.transitioningDelegate = self;
     }
     return self;
@@ -45,10 +44,12 @@
 
     self.navBarView = [UIView new];
     self.navBarView.backgroundColor = blueColor;
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanFromHeaderBar:)];
+    [self.navBarView addGestureRecognizer:pan];
     [self.view addSubview:self.navBarView];
 
     self.scrollView = [UIScrollView new];
-    self.scrollView.delegate = self;
+    [self.scrollView.panGestureRecognizer addTarget:self action:@selector(handlePan:)];
     [self.view addSubview:self.scrollView];
 
     self.containerScrollView = [UIView new];
@@ -70,6 +71,7 @@
 
 #pragma mark - Private methods
 
+/// Display the text content
 - (void)prepareContent {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"lorem_ipsum" ofType:@"txt"];
     NSError *textError = nil;
@@ -82,6 +84,7 @@
 
 #pragma mark - Configure Layout
 
+/// Configure Layout Constraints
 - (void)configureLayoutConstraints {
     [self.navBarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view);
@@ -122,31 +125,100 @@
     return [DismissAnimator new];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    return self.dismissInteractor.hasStarted ? self.dismissInteractor : nil;
 }
 
 #pragma mark - UIScrollView Delegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat offset = scrollView.contentOffset.y;
-
-    if (offset < 0) {
-        self.dismissThreshold += offset;
-        NSLog(@"contentOffset: %.2f, dismissThreshold: %.2f", offset, self.dismissThreshold);
-        self.dimissInteractor.hasStarted = YES;
-        scrollView.contentOffset = CGPointMake(0, 0);
-//        [self dismissViewControllerAnimated:YES completion:nil];
+// Handle interactive dismissing of controller from scrollView
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer {
+    CGFloat scrollViewOffsetY = self.scrollView.contentOffset.y;
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        self.originalDismissStartingOffsetY = scrollViewOffsetY;
     }
+    
+    // converts the pan gesture coordinate to the app window’s coordinate space
+    CGPoint translation = [recognizer translationInView:self.view.window];
+    // converts the vertical distance to a percentage, based on the overall screen height
+    CGFloat diff = translation.y - self.originalDismissStartingOffsetY;
+    
+    if (scrollViewOffsetY > 0 && !self.dismissInteractor.hasStarted) {
+        /// Don't dismiss if we're just scrolling inside the scrollView
+        return;
+    }
+    
+    [self handlePan:diff forState:recognizer.state];
+    
+    self.scrollView.showsVerticalScrollIndicator = !self.dismissInteractor.hasStarted;
+    self.scrollView.contentOffset = CGPointMake(0, 0);
+}
 
-//    let percentThreshold:CGFloat = 0.3
-//
-//    // convert y-position to downward pull progress (percentage)
-//    let translation = sender.translationInView(view)
-//    let verticalMovement = translation.y / view.bounds.height
-//    let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-//    let downwardMovementPercent = fminf(downwardMovement, 1.0)
-//    let progress = CGFloat(downwardMovementPercent)
+// Handle interactive dismissing of controller from navbar header
+- (void)handlePanFromHeaderBar:(UIPanGestureRecognizer *)recognizer {
+    // converts the pan gesture coordinate to the app window’s coordinate space
+    CGPoint translation = [recognizer translationInView:self.view.window];
+    [self handlePan:translation.y forState:recognizer.state];
+}
+
+- (void)handlePan:(CGFloat)translationY forState:(UIGestureRecognizerState)state {
+    // how far down the user has to drag in order to trigger the modal dismissal
+    CGFloat percentThreshold = 0.3f;
+    // converts the vertical distance to a percentage, based on the overall screen height
+    CGFloat verticalMovement = translationY / self.view.bounds.size.height;
+    // captures movement in the downward direction. Upward movement is ignored
+    CGFloat downwardMovement = fmaxf(verticalMovement, 0.f);
+    // caps the percentage to a maximum of 100%
+    CGFloat progress = fminf(downwardMovement, 1.f);
+    
+    NSLog(@"originalOffset: %.2f, translation: %.2f, progress: %.2f, verticalMovement: %.2f",
+          self.originalDismissStartingOffsetY,
+          translationY,
+          progress,
+          verticalMovement);
+    
+    switch (state) {
+        case UIGestureRecognizerStateBegan:
+            self.dismissInteractor.hasStarted = YES;
+            [self dismissViewControllerAnimated:YES completion:nil];
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+            if (!self.dismissInteractor.hasStarted) {
+                self.dismissInteractor.hasStarted = YES;
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            self.dismissInteractor.shouldFinish = progress > percentThreshold;
+            [self.dismissInteractor updateInteractiveTransition:progress];
+            
+            if (progress <= 0.f) {
+                self.dismissInteractor.hasStarted = NO;
+                [self.dismissInteractor cancelInteractiveTransition];
+            }
+            break;
+            
+        case UIGestureRecognizerStateCancelled:
+            self.dismissInteractor.hasStarted = NO;
+            [self.dismissInteractor cancelInteractiveTransition];
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+            self.dismissInteractor.hasStarted = NO;
+            if (self.dismissInteractor.shouldFinish) {
+                [self.dismissInteractor finishInteractiveTransition];
+            } else {
+                [self.dismissInteractor cancelInteractiveTransition];
+            }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

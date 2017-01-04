@@ -26,6 +26,13 @@
 
     [containerView insertSubview:toVC.view belowSubview:fromVC.view];
     [containerView insertSubview:dimingView belowSubview:fromVC.view];
+    
+    // Take a snapshot to capture the status bar
+    UIView *snapshotView = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:YES];
+    [containerView addSubview:snapshotView];
+    [snapshotView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(fromVC.view);
+    }];
 
     [dimingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(toVC.view);
@@ -41,6 +48,7 @@
         dimingView.alpha = 0.f;
     } completion:^(BOOL finished) {
         [dimingView removeFromSuperview];
+        [snapshotView removeFromSuperview];
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
 }
