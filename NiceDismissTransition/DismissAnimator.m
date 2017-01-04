@@ -28,8 +28,8 @@
     [containerView insertSubview:dimingView belowSubview:fromVC.view];
     
     // Take a snapshot to capture the status bar
-    UIView *snapshotView = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:YES];
-    [containerView addSubview:snapshotView];
+    UIView *snapshotView = [[UIScreen mainScreen] snapshotViewAfterScreenUpdates:NO];
+    [fromVC.view addSubview:snapshotView];
     [snapshotView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(fromVC.view);
     }];
