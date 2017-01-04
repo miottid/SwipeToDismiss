@@ -82,8 +82,6 @@
     self.textContentLbl.text = text;
 }
 
-#pragma mark - Configure Layout
-
 /// Configure Layout Constraints
 - (void)configureLayoutConstraints {
     [self.navBarView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -171,12 +169,6 @@
     CGFloat downwardMovement = fmaxf(verticalMovement, 0.f);
     // caps the percentage to a maximum of 100%
     CGFloat progress = fminf(downwardMovement, 1.f);
-    
-    NSLog(@"originalOffset: %.2f, translation: %.2f, progress: %.2f, verticalMovement: %.2f",
-          self.originalDismissStartingOffsetY,
-          translationY,
-          progress,
-          verticalMovement);
     
     switch (state) {
         case UIGestureRecognizerStateBegan:
