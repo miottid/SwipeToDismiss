@@ -1,4 +1,4 @@
-# NiceDismissTransition
+# SwipeToDismiss
 
 An Objective-C project that dismiss an UIViewController with user interactions.
 
